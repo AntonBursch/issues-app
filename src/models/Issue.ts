@@ -16,17 +16,19 @@ export interface Issue {
     number: number;
     state: string;
     title: string;
-    body: string;
+    body?: string;
     user: User;
     labels: Label[];
-    assignee: Assignee;
+    assignee?: Assignee;
     assignees: Assignee[];
-    milestone: Milestone;
+    milestone?: Milestone;
     locked: boolean;
-    active_lock_reason: string;
+    author_association: string;
+    active_lock_reason?: string;
     comments: number;
-    pull_request: PullRequest;
+    pull_request?: PullRequest;
     closed_at?: any;
     created_at: Date;
     updated_at: Date;
+    performed_via_github_app?: any;
 }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Issue } from '../models/Issue';
+import { IssueItem } from './IssueItem';
 
 interface IssuesProps {
     issues: Issue[];
@@ -16,7 +17,10 @@ export const Issues: React.FC<IssuesProps> = (props: IssuesProps) => {
                         return issue.state === 'open'
                     }).map((issue: Issue, index: number) => {
                         return (
-                            <li key={index}>{issue.title}</li>
+                            <IssueItem 
+                                key={index} 
+                                issue={issue} 
+                            />
                         )
                     })
                 }
