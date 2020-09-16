@@ -9,12 +9,14 @@ interface IssuesProps {
 
 export const Issues: React.FC<IssuesProps> = (props: IssuesProps) => {
     const { issues } = props;
+    
     let openIssues = issues.filter((issue: Issue) => {
         return issue.state === 'open'
     });
     let closedIssues = issues.filter((issue: Issue) => {
-        return issue.state !== 'open'
-    })
+        return issue.state === 'closed'
+    });
+
     return (
         <React.Fragment>
             <div style={{
