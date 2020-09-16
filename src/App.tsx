@@ -1,13 +1,17 @@
-import Axios from 'axios';
 import React from 'react';
 import axios from 'axios';
+import { Issue } from './models/Issue';
 
 interface AppProps {}
 interface AppState {
-    issues: any[];
+    issues: Issue[];
 }
 
 class App extends React.Component<AppProps, AppState> {
+    state = {
+        issues: []
+    };
+
     componentDidMount() {
         this.getIssues();
     }
@@ -15,15 +19,38 @@ class App extends React.Component<AppProps, AppState> {
     render() {
         return (
             <React.Fragment>
-
+                <ul>
+                {
+                    this.state.issues.map((issue: Issue, index: Number) => {
+                        return (
+                            <li>{ issue.title }</li>
+                        )
+                    })
+                }
+                </ul>
             </React.Fragment>
         )
     }
 
-    async getIssues(): Promise<any> {
+    async getIssues(): Promise<void> {
         try {
             const response = await axios.get('https://api.github.com/repos/octocat/hello-world/issues');
             console.log(response.data);
+            if(response) {
+                if(response.status === 200) {
+                    if(response.data) {
+                        this.setState({
+                            issues: response.data
+                        });
+                    } else {
+                        console.log('ERROR: GET Issues returned response with null data');
+                    }
+                } else {
+                    console.log(`ERROR: GET Issues returned status ${response.status}`);
+                }
+            } else {
+                console.log('ERROR: GET Issues returned a null response');
+            }
         } catch(error) {
             console.log(error);
         }
