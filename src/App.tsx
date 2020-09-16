@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Issue } from './models/Issue';
+import { Issues } from './components/Issues';
 
 interface AppProps {}
 interface AppState {
@@ -19,17 +20,7 @@ class App extends React.Component<AppProps, AppState> {
     render() {
         return (
             <React.Fragment>
-                <ul>
-                {
-                    this.state.issues.filter((issue: Issue) => {
-                        return issue.state === 'open'
-                    }).map((issue: Issue, index: Number) => {
-                        return (
-                            <li key={new Date().toISOString()}>{ issue.title }</li>
-                        )
-                    })
-                }
-                </ul>
+               <Issues issues={this.state.issues} />
             </React.Fragment>
         )
     }
