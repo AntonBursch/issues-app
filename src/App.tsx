@@ -21,9 +21,11 @@ class App extends React.Component<AppProps, AppState> {
             <React.Fragment>
                 <ul>
                 {
-                    this.state.issues.map((issue: Issue, index: Number) => {
+                    this.state.issues.filter((issue: Issue) => {
+                        return issue.state === 'open'
+                    }).map((issue: Issue, index: Number) => {
                         return (
-                            <li>{ issue.title }</li>
+                            <li key={new Date().toISOString()}>{ issue.title }</li>
                         )
                     })
                 }
