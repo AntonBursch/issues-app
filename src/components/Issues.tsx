@@ -13,7 +13,7 @@ export const Issues: React.FC<IssuesProps> = (props: IssuesProps) => {
         return issue.state === 'open'
     });
     let closedIssues = issues.filter((issue: Issue) => {
-        return issue.state === 'closed'
+        return issue.state !== 'open'
     })
     return (
         <React.Fragment>
@@ -27,7 +27,7 @@ export const Issues: React.FC<IssuesProps> = (props: IssuesProps) => {
                             border: '1px solid #eef0f3',
                             padding: 10
                         }}>
-                            {`${openIssues.length} Open ${closedIssues.length} Closed`}
+                            {<span style={{fontWeight: 600}}>{`${openIssues.length} Open`}</span>}{` ${closedIssues.length} Closed`}
                         </div>
                     </li>
                     {

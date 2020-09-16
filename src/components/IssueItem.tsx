@@ -24,7 +24,7 @@ export class IssueItem extends React.Component<IssueItemProps, IssueItemState> {
                         border: '1px solid #eef0f3',
                         padding: 10
                     }}>
-                        <div style={{ fontWeight: 'bold' }}>{this.props.issue.title}</div>
+                        <div style={{ fontWeight: 600 }}>{this.props.issue.title}</div>
                         <div>{`#${this.props.issue.id} opened ${this.openedText(this.props.issue.created_at)} ago by ${this.props.issue.user.login}`}</div>
                     </div>
                 </li>
