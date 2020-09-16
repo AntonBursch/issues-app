@@ -28,7 +28,6 @@ class App extends React.Component<AppProps, AppState> {
     async getIssues(): Promise<void> {
         try {
             const response = await axios.get('https://api.github.com/repos/octocat/hello-world/issues');
-            console.log(response.data);
             if(response) {
                 if(response.status === 200) {
                     if(response.data) {
